@@ -1,0 +1,44 @@
+---
+title: Creating a Profile
+description: Learn how to create and configure a server profile in wLauncher, including optional fields and plugin requirements.
+icon: Plus
+---
+
+## Creating a Profile
+
+Creating a profile in **wLauncher** allows you to save your server connection settings, customize nickname handling, enforce plugin requirements, and more.
+
+### Profile Fields
+
+| Field                      | Description                                                                      | Required                                    |
+| -------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------- |
+| **Profile ID**             | Unique ID for this profile. Leave blank to auto-generate.                        | <Lucide.X className="text-red-500" />       |
+| **Server Name**            | Name shown on the wLauncher home screen.                                         | <Lucide.Check className="text-green-500" /> |
+| **Server IP**              | IP or domain (e.g. `localhost:30120`, `play.example.com`).                       | <Lucide.Check className="text-green-500" /> |
+| **Server Dynamic URL**     | Optional URL pointing to your `dynamic.json` (for live stats like player count). | <Lucide.X className="text-red-500" />       |
+| **Name Regex Requirement** | Regex pattern to restrict player names (e.g. only allow A-Z characters).         | <Lucide.X className="text-red-500" />       |
+| **Required Plugins**       | List of plugin files users must have installed to join. See below.               | <Lucide.X className="text-red-500" />       |
+
+<Callout type="info">The **dynamic.json** endpoint is used to show player count and server status before joining. This is optional but enhances the launcher experience.</Callout>
+
+---
+
+## Required Plugins
+
+If your server depends on specific client-side mods or DLLs, you can require them in the profile.
+
+### Plugin Fields
+
+| Field                | Description                                                                       |
+| -------------------- | --------------------------------------------------------------------------------- |
+| **Plugin File Name** | Exact filename (e.g. `SirenSetting_Limit_Adjuster.asi`). Case-sensitive.          |
+| **Download URL**     | Direct link to download the file. Must point directly to the file, not a webpage. |
+
+To add one:
+
+1. Scroll to the **Required Plugins** section at the bottom of the profile editor.
+2. Click **Add Required Plugin**.
+3. Fill out both fields.
+4. Repeat as needed.
+
+<Callout type="info">Users will be prompted to download missing plugins before launching the game, ensuring compatibility.</Callout>

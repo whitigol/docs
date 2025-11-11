@@ -1,0 +1,124 @@
+---
+title: DevMate
+description: A versatile FiveM development tool designed to simplify resource creation, streamline server management, and provide user-friendly tools for efficient debugging.
+---
+
+### Credits
+
+- DevMate is co-created by [Whitigol](https://github.com/whitigol) and [TheLaw](https://github.com/xXxTHELAWxXx97).
+- DevMate is released, and distributed by [Big Daddy Scripts](https://bigdaddyscripts.com).
+
+## Overview
+
+**DevMate** is a powerful FiveM development tool designed to simplify resource creation, streamline server management, and provide user-friendly tools for efficient debugging.
+Whether you're a server owner, developer, or administrator, DevMate offers a comprehensive suite of features to enhance your FiveM development workflow.
+
+<Callout type="error" title="Security Warning" icon={<Lucide.ShieldAlert className="size-6 text-red-500 animate-caret-blink" />}>
+	DevMate is a powerful tool for both creators and bad actors. Monitor your permissions carefully, as features like the Resource Explorer and Code Executor could expose your
+	server to malicious code!
+</Callout>
+
+---
+
+## Key Features
+
+### Safe Restart
+
+Safe Restart is a groundbreaking feature designed to minimize the risk of client crashes when restarting scripts. By ensuring all props, vehicles, and maps are properly unloaded
+before a restart, Safe Restart prevents common issues like leaving undespawned vehicles or props in the game world, providing a smooth and reliable experience.
+
+### Entity Viewer
+
+DevMate includes a powerful Entity Viewer, enabling you to inspect all entity types in the game world, including:
+
+- **Objects** - View properties of all objects in the game world
+- **Vehicles** - Inspect vehicle data, models, and configurations
+- **Peds** - Examine pedestrian entities and their properties
+
+#### Free View
+
+The Free View feature lets you target any entity in the game world and instantly view its properties for enhanced debugging and development. Simply point at an entity and view all
+its relevant data in real-time.
+
+### Resource Manager
+
+The Resource Manager provides an intuitive in-game UI for managing scripts. You can start, stop, or restart scripts using the Safe Restart feature. Additionally, it remembers the
+last restarted script, allowing you to quickly restart it without searching through the list.
+
+### Resource Explorer
+
+Resource Explorer enables secure access to server files and scripts, simulating an FTP connection without exposing your credentials. This feature empowers you and your development
+team to edit configurations and resolve issues on the fly, all within the familiar VS Code interface.
+
+<Callout type="warning" title="Dangerous Feature">
+	The Resource Explorer allows users to see and modify all resources on the server. Only grant this permission to trusted administrators.
+</Callout>
+
+### Code Executor
+
+Run custom code directly from an in-game window to streamline debugging and testing.
+
+**Supported languages:**
+
+- Lua
+- JavaScript
+
+**Supported scopes:**
+
+- Server
+- Client
+
+The Code Executor integrates seamlessly with the Entity Viewer, allowing you to test FiveM Natives and feed hardcoded values in real time without creating dedicated debug scripts.
+
+<Callout type="error" title="Extremely Dangerous Feature">
+	The Code Executor allows users to execute code on the server. This can be used maliciously to damage your server or steal data. Only grant this permission to highly trusted
+	developers.
+</Callout>
+
+### OneSync Blip
+
+Adds a simple blip to the map that provides a visual approximation of the OneSync radius, aiding in server management and helping you understand the synchronization boundaries of
+your server.
+
+### Game Modifier (Population Density)
+
+Adjust vehicle and pedestrian density dynamically, giving you control over the game world's population levels. Perfect for testing scenarios, performance optimization, or creating
+specific gameplay experiences.
+
+### Coordinates Tool
+
+A convenient tool for developers and server admins:
+
+- **Real-time Coordinates** - Displays your current coordinates and heading
+- **Distance Measurement** - Measure distances as the crow flies. Simply set a starting point, travel to your destination, and track the distance traveled
+
+---
+
+## Documentation
+
+<Cards>
+	<Card
+		title="Installation"
+		icon={<Lucide.Download />}
+		description="Step-by-step guide to installing and setting up DevMate on your FiveM server."
+		href="/docs/fivem-scripts/devmate/installation"
+	/>
+	<Card
+		title="Commands"
+		icon={<Lucide.Terminal />}
+		description="Complete reference of all available DevMate commands for server and client consoles."
+		href="/docs/fivem-scripts/devmate/commands"
+	/>
+	<Card
+		title="Configuration"
+		icon={<Lucide.Settings />}
+		description="Comprehensive guide to configuring DevMate, including permissions, event watchers, and Discord integration."
+		href="/docs/fivem-scripts/devmate/config"
+	/>
+	<Card
+		title="Exports"
+		icon={<Lucide.Code />}
+		description="API reference for integrating DevMate functionality into your own scripts."
+		href="/docs/fivem-scripts/devmate/exports"
+	/>
+</Cards>

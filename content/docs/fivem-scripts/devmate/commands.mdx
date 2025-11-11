@@ -1,0 +1,88 @@
+---
+title: Commands
+description: Complete reference of all available DevMate commands for server and client consoles.
+icon: Terminal
+---
+
+## Overview
+
+DevMate provides several console commands for managing log levels and controlling various aspects of the tool. All commands can be executed from either the server console or the client console (F8).
+
+---
+
+## Log Level Commands
+
+DevMate uses a hierarchical log level system to control what information is displayed in the console. Understanding these levels helps you filter out unnecessary information during development and production.
+
+### Valid Log Levels
+
+<Callout type="info" title="Log Level Hierarchy">
+	The log levels are hierarchical, meaning each level includes all levels below it:
+	
+	- **`INFO`** - Shows info, success, warn, and error logs (most verbose)
+	- **`SUCCESS`** - Shows success, warn, and error logs
+	- **`WARN`** - Shows warn and error logs
+	- **`ERROR`** - Shows error logs only (least verbose)
+	- **`NONE`** - Shows nothing (silent mode)
+</Callout>
+
+### Set Log Level
+
+Sets the current log level for DevMate output.
+
+```bash title="Server or Client Console"
+setloglevel <level>
+```
+
+**Parameters:**
+- `<level>` - One of: `INFO`, `SUCCESS`, `WARN`, `ERROR`, or `NONE`
+
+**Examples:**
+
+```bash
+# Set to show only errors
+setloglevel ERROR
+
+# Set to show all information
+setloglevel INFO
+
+# Disable all logging
+setloglevel NONE
+```
+
+<Callout type="warning">
+	Setting the log level to `NONE` will completely silence DevMate output, which may make debugging difficult. Use with caution.
+</Callout>
+
+### Get Log Level
+
+Retrieves the current log level setting.
+
+```bash title="Server or Client Console"
+getloglevel
+```
+
+**Output:**
+The command will display the current log level in the console, for example:
+```
+Current log level: INFO
+```
+
+---
+
+## Usage Tips
+
+- **Development**: Use `INFO` or `SUCCESS` to see detailed information during development
+- **Production**: Use `WARN` or `ERROR` to reduce console spam in production environments
+- **Debugging**: Temporarily set to `INFO` when troubleshooting issues
+- **Performance**: Use `NONE` if you need to completely silence DevMate (not recommended for active use)
+
+---
+
+## Additional Notes
+
+- Log level changes take effect immediately
+- The log level setting is not persistent across server restarts (resets to default)
+- Different log levels help filter information based on importance
+- Error logs are always critical and should be monitored
+

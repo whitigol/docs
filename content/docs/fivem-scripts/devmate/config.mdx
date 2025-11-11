@@ -1,0 +1,347 @@
+---
+title: Configuration
+description: Comprehensive guide to configuring DevMate, including permissions, event watchers, and Discord integration.
+icon: Settings
+---
+
+## Overview
+
+DevMate's configuration is managed through the `config.json` file located in the `DevMate` folder. This guide provides detailed information about every configuration option available, helping you customize DevMate to fit your server's needs.
+
+---
+
+## Configuration File Location
+
+The configuration file is located at:
+
+```
+DevMate/config.json
+```
+
+<Callout type="info">
+	The configuration file uses JSON format with schema validation. Most modern editors will provide
+	auto-completion and validation when editing the file.
+</Callout>
+
+---
+
+## Quick Reference
+
+| Field Name      | Type      | Description                                                                                            |
+| --------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| `$schema`       | `string`  | Specifies the configuration schema. Do not modify or remove this field.                                |
+| `LicenseKey`    | `string`  | Enter your license key from the [Big Daddy Scripts Account Page](https://bigdaddyscripts.com/Account). |
+| `EventWatcher`  | `array`   | Defines events to monitor and log their results.                                                       |
+| `timestamp`     | `boolean` | Enables or disables timestamps in log messages.                                                        |
+| `SendToDiscord` | `object`  | Configures Discord Webhooks for sending logs.                                                          |
+| `SafeRestart`   | `object`  | Configures behavior for safe restarts.                                                                 |
+| `Permissions`   | `object`  | Sets up role-based permissions for different user groups.                                              |
+
+---
+
+## Configuration Options
+
+### `$schema`
+
+The `$schema` field specifies the schema for the configuration file, assisting with validation and auto-completion in supported editors.
+
+**Type:** `string`
+
+**Example:**
+
+```json
+{
+	"$schema": "https://example.com/devmate-config.schema.json"
+}
+```
+
+<Callout type="warning">
+	Changing or removing this field may cause issues with your configuration validation. It's
+	recommended to leave this field as-is.
+</Callout>
+
+---
+
+### `LicenseKey`
+
+The `LicenseKey` field holds the license key obtained from the [Big Daddy Scripts Account Page](https://bigdaddyscripts.com/Account). This key is required for DevMate to function.
+
+**Type:** `string`
+
+**Example:**
+
+```json
+{
+	"LicenseKey": "your-license-key-here"
+}
+```
+
+<Callout type="warning" title="Security">
+	Keep your license key secure and never share it publicly. Your license is tied to your account and
+	server.
+</Callout>
+
+---
+
+### `EventWatcher`
+
+The `EventWatcher` field allows you to specify events to monitor and log. This is useful for debugging and tracking specific game events.
+
+**Type:** `array` of objects
+
+**Object Structure:**
+
+- `eventName` (string) - The name of the event to monitor
+- `logLevel` (string) - The log level for the event results (one of: `INFO`, `SUCCESS`, `WARN`, `ERROR`)
+
+**Example:**
+
+```json
+{
+	"EventWatcher": [
+		{
+			"eventName": "playerSpawned",
+			"logLevel": "SUCCESS"
+		},
+		{
+			"eventName": "playerDropped",
+			"logLevel": "WARN"
+		}
+	]
+}
+```
+
+<Callout type="info">
+	Event watchers can help you track specific events for debugging purposes. Be careful not to
+	monitor too many events, as this can impact performance.
+</Callout>
+
+---
+
+### `timestamp`
+
+The `timestamp` field controls whether timestamps are included in log messages.
+
+**Type:** `boolean`
+
+**Example:**
+
+```json
+{
+	"timestamp": true
+}
+```
+
+**Values:**
+
+- `true` - Include timestamps in all log messages
+- `false` - Omit timestamps from log messages
+
+---
+
+### `SendToDiscord`
+
+The `SendToDiscord` field configures settings for sending logs to a Discord Webhook. This is useful for monitoring your server remotely.
+
+**Type:** `object`
+
+**Object Properties:**
+
+- `enabled` (boolean) - Enable or disable Discord Webhook integration
+- `WebHookURL` (string) - The URL of your Discord Webhook
+- `level` (string) - Log level to send to Discord (one of: `INFO`, `SUCCESS`, `WARN`, `ERROR`)
+
+**Example:**
+
+```json
+{
+	"SendToDiscord": {
+		"enabled": true,
+		"WebHookURL": "https://discord.com/api/webhooks/1234567890/abcdefghijklmnop",
+		"level": "ERROR"
+	}
+}
+```
+
+<Callout type="info">
+	Only logs at or above the specified level will be sent to Discord. For example, if set to `ERROR`,
+	only error logs will be sent.
+</Callout>
+
+<Callout type="warning">
+	Keep your Discord Webhook URL secure. Anyone with access to this URL can send messages to your
+	Discord channel.
+</Callout>
+
+---
+
+### `SafeRestart`
+
+The `SafeRestart` field defines the behavior for performing safe restarts. Safe Restart ensures all props, vehicles, and maps are properly unloaded before restarting scripts.
+
+**Type:** `object`
+
+**Object Properties:**
+
+- `warnTime` (number) - Time (in seconds) to wait after sending a warning before beginning the restart process
+- `lagTime` (number) - Time (in seconds) to wait before actually restarting the resource
+
+**Example:**
+
+```json
+{
+	"SafeRestart": {
+		"warnTime": 5,
+		"lagTime": 2
+	}
+}
+```
+
+<Callout type="info">
+	We recommend using the default values for optimal performance. Adjust these values only if you
+	experience issues with safe restarts.
+</Callout>
+
+**Recommended Values:**
+
+- `warnTime`: 3-10 seconds (gives players time to react)
+- `lagTime`: 1-3 seconds (allows cleanup to complete)
+
+---
+
+### `Permissions`
+
+The `Permissions` field configures role-based permissions for different user groups, specifying which features each group can access.
+
+**Type:** `object`
+
+**Object Properties:**
+
+- `enabled` (boolean) - Enable or disable the permissions system
+- `groups` (array) - Define groups and their respective permissions
+
+**Group Structure:**
+
+- `group` (string) - The name of the group (must match your server's permission system)
+- `permissions` (array) - A list of permissions for the group
+
+**Valid Permissions:**
+
+| Permission         | Description                                                                                        | Danger Level        |
+| ------------------ | -------------------------------------------------------------------------------------------------- | ------------------- |
+| `OpenMenu`         | Permission to open the DevMate menu                                                                | Safe                |
+| `EntityViewer`     | Permission to use the Entity Viewer module                                                         | Safe                |
+| `ResourceManager`  | Permission to use the ResourceManager module (allows stopping, starting, and restarting resources) | Semi-Dangerous      |
+| `CodeExecuter`     | Permission to use the CodeExecuter module (allows executing code on the server)                    | Extremely Dangerous |
+| `OneSyncBlip`      | Permission to use the OneSyncBlip module                                                           | Safe                |
+| `GameModifier`     | Permission to use the GameModifier module                                                          | Safe                |
+| `CoordsTool`       | Permission to use the CoordsTool module                                                            | Safe                |
+| `ResourceExplorer` | Permission to use the ResourceExplorer module (allows seeing and modifying all server resources)   | Extremely Dangerous |
+
+**Example:**
+
+```json
+{
+	"Permissions": {
+		"enabled": true,
+		"groups": [
+			{
+				"group": "admin",
+				"permissions": [
+					"OpenMenu",
+					"EntityViewer",
+					"ResourceManager",
+					"CodeExecuter",
+					"OneSyncBlip",
+					"GameModifier",
+					"CoordsTool",
+					"ResourceExplorer"
+				]
+			},
+			{
+				"group": "developer",
+				"permissions": [
+					"OpenMenu",
+					"EntityViewer",
+					"ResourceManager",
+					"OneSyncBlip",
+					"GameModifier",
+					"CoordsTool",
+					"ResourceExplorer"
+				]
+			},
+			{
+				"group": "tester",
+				"permissions": ["OpenMenu", "EntityViewer", "OneSyncBlip", "CoordsTool"]
+			}
+		]
+	}
+}
+```
+
+**Permission Recommendations:**
+
+<Callout type="error" title="Security Best Practices">
+	
+	- **Admins**: Full access (use with extreme caution)
+	- **Developers**: Most permissions except `CodeExecuter` (still dangerous)
+	- **Testers**: Safe permissions only (`OpenMenu`, `EntityViewer`, `OneSyncBlip`, `CoordsTool`)
+	- **Regular Users**: No DevMate permissions (unless specifically needed)
+</Callout>
+
+---
+
+## Complete Configuration Example
+
+Here's a complete example configuration file with all options:
+
+```json
+{
+	"$schema": "https://example.com/devmate-config.schema.json",
+	"LicenseKey": "your-license-key-here",
+	"EventWatcher": [
+		{
+			"eventName": "playerSpawned",
+			"logLevel": "SUCCESS"
+		}
+	],
+	"timestamp": true,
+	"SendToDiscord": {
+		"enabled": false,
+		"WebHookURL": "",
+		"level": "ERROR"
+	},
+	"SafeRestart": {
+		"warnTime": 5,
+		"lagTime": 2
+	},
+	"Permissions": {
+		"enabled": true,
+		"groups": [
+			{
+				"group": "admin",
+				"permissions": [
+					"OpenMenu",
+					"EntityViewer",
+					"ResourceManager",
+					"CodeExecuter",
+					"OneSyncBlip",
+					"GameModifier",
+					"CoordsTool",
+					"ResourceExplorer"
+				]
+			}
+		]
+	}
+}
+```
+
+---
+
+## Configuration Tips
+
+1. **Start with Defaults**: Begin with the default configuration and adjust as needed
+2. **Test Permissions**: Always test permission configurations in a development environment first
+3. **Monitor Logs**: Use EventWatcher and Discord integration to monitor your server
+4. **Security First**: Be conservative with dangerous permissions like `CodeExecuter` and `ResourceExplorer`
+5. **Backup Config**: Always backup your configuration before making major changes

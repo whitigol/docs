@@ -1,0 +1,5 @@
+{
+	"title": "fivem-compiler",
+	"description": "A fast, flexible, and modern compiler built specifically for FiveM scripts, supporting JavaScript, TypeScript, and Lua with extensive customization options.",
+	"pages": ["installation", "config"]
+}

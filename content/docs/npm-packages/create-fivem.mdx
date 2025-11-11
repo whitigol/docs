@@ -1,0 +1,98 @@
+---
+title: create-fivem
+description: A quick way to bootstrap a FiveM script using TypeScript, JavaScript, or Lua—complete with a pre-configured compiler.
+---
+
+## Overview
+
+**`create-fivem`** is a simple CLI tool that scaffolds a new FiveM script with zero setup. It supports TypeScript, JavaScript, and Lua, and comes pre-configured with the
+[`@whitigol/fivem-compiler`](/docs/npm-packages/fivem-compiler) for seamless development and deployment.
+
+---
+
+## Features
+
+- <Bs.BsTools className="inline-block mr-1" /> Preconfigured with [`@whitigol/fivem-compiler`](/docs/npm-packages/fivem-compiler)
+- <Bs.BsCardList className="inline-block mr-1" /> Choose TypeScript, JavaScript, or Lua
+- <Bs.BsFolder2 className="inline-block mr-1" /> Ready-to-use project structure
+- <Bs.BsBox className="inline-block mr-1" /> Works with Pnpm, Bun, npm, and Yarn
+
+---
+
+## Requirements
+
+Before you begin, make sure you have:
+
+- Node.js 18 or newer
+- A Node.js package manager installed (Pnpm, Bun, npm, or Yarn)
+
+---
+
+## Installation
+
+Run the command using your preferred package manager:
+
+```npm
+npm create fivem@latest
+```
+
+---
+
+## CLI Prompts
+
+Once the command runs, you’ll be prompted to select:
+
+- Option to initialize a Git repository for version control
+- Choose your programming language:
+    - TypeScript
+    - JavaScript
+    - Lua
+- Specify the resource details:
+    - Name
+    - Author
+    - Description
+    - Version
+- Decide whether to include NUI (in-game UI):
+    - **If yes:**
+        - Select UI framework (React, Vue, or plain HTML)
+        - Choose UI language (TypeScript or JavaScript)
+    - **If no:**
+        - NUI will not be included in the project
+
+<Callout type="info">
+	You can cancel at any time with <kbd>Ctrl</kbd>+<kbd>C</kbd>. Your file system will remain unchanged until all prompts are answered.
+</Callout>
+
+---
+
+## Output Structure
+
+Here’s what a full-featured TypeScript project looks like:
+
+```
+PROJECT ROOT/
+├─ node_modules/
+├─ src/
+│  ├─ client/
+│  │  └─ index.ts
+│  ├─ server/
+│  │  └─ index.ts
+│  └─ fxmanifest.lua
+├─ package.json
+├─ ts.wfm
+├─ wfm.config.ts
+```
+
+Everything is already wired up to work with the compiler—just run `pnpm dev`, `bun dev`, `npm run dev`, or `yarn dev`.
+
+---
+
+## Next Steps
+
+After generating your script:
+
+1. Open the project directory.
+2. Start the dev server with your package manager (`pnpm dev`, `bun dev`, `npm run dev`, or `yarn dev`).
+3. Begin scripting immediately—everything is already set up.
+
+<Callout type="info">Your script is instantly ready for compilation and deployment with `@whitigol/fivem-compiler`.</Callout>

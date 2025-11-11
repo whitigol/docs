@@ -1,0 +1,227 @@
+---
+title: Configuration
+description: Explore every configuration option for the @whitigol/fivem-compiler, including watch paths, output settings, minification, obfuscation, and more.
+icon: Settings2
+---
+
+## Overview
+
+The `wfm.config.ts` file powers your FiveM build pipeline. This page explains every available option in detail, with examples and usage tips to help you configure your script with confidence.
+
+You can generate a config file automatically when bootstrapping your project with [`create-fivem`](/docs/npm-packages/create-fivem).
+
+---
+
+## Default Configuration
+
+Click below to view the full default config file:
+
+<Accordions>
+<Accordion title={<>Full Default Config <code className="text-sm font-mono text-muted-foreground bg-muted px-1 rounded-md">wfm.config.ts</code></>}>
+
+```ts title="wfm.config.ts"
+import { defineConfig } from "@whitigol/fivem-compiler";
+
+export default defineConfig({
+	watch: {
+		server: ["src/server/**/*.{lua,ts,js}"],
+		client: ["src/client/**/*.{lua,ts,js}"],
+		all: ["src/data/**/*", "src/stream/**/*"],
+	},
+
+	copy: [
+		{
+			from: "src/stream/**/*",
+			to: "stream",
+		},
+		{
+			from: "src/data/**/*",
+			to: "data",
+		},
+	],
+
+	skipCopyDuringWatch: true,
+	minify: false,
+	obfuscate: false,
+
+	resource: {
+		directory: "resource",
+	},
+});
+```
+
+</Accordion>
+
+</Accordions>
+
+---
+
+## Runtime Helpers
+
+### `isDev`
+
+You can dynamically modify settings based on the current environment using the `isDev` helper:
+
+<Accordions>
+<Accordion title="Example: Environment-aware config">
+
+```ts title="wfm.config.ts" lineNumbers
+import { defineConfig, isDev } from "@whitigol/fivem-compiler";
+
+watch: {
+    server: ["src/server/**/*.{lua,ts,js}"],
+    client: ["src/client/**/*.{lua,ts,js}"],
+    all: ["src/data/**/*", "src/stream/**/*"],
+},
+
+copy: [
+    {
+        from: "src/stream/**/*",
+        to: "stream",
+    },
+    {
+        from: "src/data/**/*",
+        to: "data",
+    },
+],
+
+skipCopyDuringWatch: true,
+
+// Only minify in production
+minify: !isDev, // [!code highlight]
+
+// Obfuscate in development (not recommended)
+obfuscate: isDev, // [!code highlight]
+
+resource: {
+    directory: "resource",
+},
+```
+
+</Accordion>
+
+</Accordions>
+
+---
+
+## Configuration Reference
+
+Each field below is optional and overrideable. The compiler merges your config with sensible defaults.
+
+---
+
+### `watch`
+
+Defines which files should be watched during development.
+
+```ts
+watch: {
+  server: ["src/server/**/*.{lua,ts,js}"],
+  client: ["src/client/**/*.{lua,ts,js}"],
+  all: ["src/data/**/*", "src/stream/**/*"],
+}
+```
+
+- `server` – Watch files that only affect the server
+- `client` – Watch files that only affect the client
+- `all` – Watch shared assets or additional folders
+
+Use flags like `--skip-client` or `--skip-server` to narrow down builds.
+
+---
+
+### `copy`
+
+Specifies files and folders to move from your source tree to the final build.
+
+```ts
+copy: [
+	{
+		from: "src/stream/**/*",
+		to: "stream",
+	},
+	{
+		from: "src/data/**/*",
+		to: "data",
+	},
+];
+```
+
+- `from` – A relative glob path from the root of your project
+- `to` – Destination path within the final resource (no leading `/`!)
+
+You can also rename single files:
+
+```ts
+copy: [
+	{
+		from: "src/special/index.html",
+		to: "ui/index.prod.html",
+	},
+];
+```
+
+---
+
+### `skipCopyDuringWatch`
+
+Avoids re-copying files while running in `--watch` mode.
+
+```ts
+skipCopyDuringWatch: true;
+```
+
+Useful for large folders (e.g. `stream`) that don’t need to be rebuilt frequently.
+
+---
+
+### `minify`
+
+Enables or disables code minification.
+
+```ts
+minify: false;
+```
+
+<Callout type="warning">Not supported for Lua files. Use with caution, as it may violate FiveM's Terms of Service.</Callout>
+
+---
+
+### `obfuscate`
+
+Enables or disables code obfuscation.
+
+```ts
+obfuscate: false;
+```
+
+<Callout type="warning">Also unsupported for Lua. Use sparingly—obfuscation may slow down builds and complicate debugging. This may also violate FiveM's Terms of Service.</Callout>
+
+---
+
+### `resource.directory`
+
+Sets the output directory for the compiled resource.
+
+```ts
+resource: {
+	directory: "resource";
+}
+```
+
+If the `OUTPUT_DIR` environment variable is set, it overrides this value.
+
+---
+
+### `entry` (Advanced)
+
+Override the default entry points for the server and client.
+
+```ts
+entry: {
+  server: "src/server/index.*",
+  client: "src/client/index.*",
+}
+```
+
+<Callout type="info">Changing this is generally unnecessary unless you have a non-standard folder structure.</Callout>
