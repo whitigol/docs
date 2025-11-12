@@ -8,14 +8,14 @@ export const Route = createFileRoute("/")({
 
 function Home() {
 	return (
-		<HomeLayout {...baseOptions()} className="text-center py-32 justify-center">
-			<h1 className="font-medium text-xl mb-4">Whitigol Software</h1>
+		<HomeLayout {...baseOptions()} className="justify-center py-32 text-center">
+			<h1 className="mb-4 text-xl font-medium">Whitigol Software</h1>
 			<Link
 				to="/docs/$"
 				params={{
 					_splat: "",
 				}}
-				className="px-3 py-2 rounded-lg bg-fd-primary text-fd-primary-foreground font-medium text-sm mx-auto"
+				className="bg-fd-primary text-fd-primary-foreground mx-auto rounded-lg px-3 py-2 text-sm font-medium"
 			>
 				Open Docs
 			</Link>
