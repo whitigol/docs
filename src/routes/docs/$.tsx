@@ -3,7 +3,7 @@ import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { createServerFn } from "@tanstack/react-start";
 import { source } from "@/lib/source";
 import type * as PageTree from "fumadocs-core/page-tree";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { docs } from "@/.source";
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/page";
 import defaultMdxComponents from "fumadocs-ui/mdx";
@@ -16,6 +16,8 @@ import * as Io from "react-icons/io5";
 import * as Si from "react-icons/si";
 import * as icons from "lucide-static";
 import getMDXComponents from "@/components/mdx";
+import { Button } from "@/components/ui/button";
+import { EditIcon } from "lucide-react";
 
 export const Route = createFileRoute("/docs/$")({
 	component: Page,
@@ -46,25 +48,39 @@ const clientLoader = createClientLoader(docs.doc, {
 	id: "docs",
 	component({ toc, frontmatter, default: MDX }) {
 		const data = Route.useLoaderData();
+		const [isClient, setIsClient] = useState(false);
+
+		useEffect(() => {
+			setIsClient(true);
+		}, []);
 
 		return (
 			<DocsPage
 				toc={toc}
-				editOnGithub={{
-					owner: "whitigol",
-					repo: "docs",
-					path: "/content/docs",
-				}}
 				tableOfContent={{
 					style: "clerk",
 				}}
-				lastUpdate={data.lastModifiedTime ? new Date(data.lastModifiedTime) : new Date()}
 			>
 				<DocsTitle>{frontmatter.title}</DocsTitle>
 				<DocsDescription>{frontmatter.description}</DocsDescription>
 				<DocsBody>
 					<MDX components={getMDXComponents() as any} />
 				</DocsBody>
+				<div className="flex flex-row flex-wrap items-center justify-between gap-4 empty:hidden">
+					<a
+						href={`https://github.com/whitigol/docs/blob/main/content/docs/${data.path}`}
+						target="_blank"
+						className="focus-visible:ring-fd-ring bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-accent/90 hover:text-fd-accent-foreground not-prose inline-flex items-center justify-center gap-1.5 rounded-md border p-2 px-2 py-1.5 text-xs font-medium transition-colors duration-100 focus-visible:ring-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+						rel="noopener noreferrer"
+					>
+						<EditIcon className="size-3.5" />
+						<span>Edit on GitHub</span>
+					</a>
+
+					<p className="text-muted-foreground text-sm">
+						Last updated: {isClient && data.lastModifiedTime ? new Date(data.lastModifiedTime).toLocaleDateString() : data.lastModifiedTime ? "Loading..." : "Unknown"}
+					</p>
+				</div>
 			</DocsPage>
 		);
 	},
