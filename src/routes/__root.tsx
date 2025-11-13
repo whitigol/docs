@@ -20,7 +20,10 @@ export const Route = createRootRouteWithContext<{
 				title: "Whitigol Software Documentation",
 			},
 		],
-		links: [{ rel: "stylesheet", href: appCss }],
+		links: [
+			{ rel: "stylesheet", href: appCss },
+			{ rel: "icon", href: "/logo.svg", type: "image/svg+xml" },
+		],
 	}),
 	component: RootComponent,
 });
