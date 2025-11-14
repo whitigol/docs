@@ -92,11 +92,9 @@ function Page() {
 
 	// Transform tree only on client to avoid serialization issues during SSR
 	const tree = useMemo(() => {
-		// Only transform on client side (browser)
 		if (typeof window !== "undefined") {
 			return transformPageTree(data.tree as PageTree.Root);
 		}
-		// On server, return original tree (with string icons)
 		return data.tree as PageTree.Root;
 	}, [data.tree]);
 
@@ -198,7 +196,6 @@ function transformPageTree(root: PageTree.Root): PageTree.Root {
 	const transformNode = (node: PageTree.Node): PageTree.Node => {
 		const transformed: PageTree.Node = { ...node };
 
-		// Transform icon if it's a string
 		if (typeof node.icon === "string") {
 			const iconName = node.icon as string;
 			const resolved = resolveIcon(iconName);
@@ -207,12 +204,10 @@ function transformPageTree(root: PageTree.Root): PageTree.Root {
 			}
 		}
 
-		// Handle folder nodes
 		if (node.type === "folder") {
 			const folderNode = transformed as PageTree.Folder;
 			folderNode.children = node.children.map(transformNode);
 
-			// Handle folder index icon if it exists
 			if (node.index) {
 				folderNode.index = { ...node.index };
 				if (typeof node.index.icon === "string") {
@@ -233,7 +228,6 @@ function transformPageTree(root: PageTree.Root): PageTree.Root {
 		children: root.children.map(transformNode),
 	};
 
-	// Handle fallback if it exists
 	if ("fallback" in root && root.fallback) {
 		(transformedRoot as any).fallback = {
 			...root.fallback,

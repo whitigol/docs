@@ -1,5 +1,4 @@
 import { loader } from "fumadocs-core/source";
-import * as icons from "lucide-static";
 import { create, docs } from "@/.source";
 
 export const source = loader({

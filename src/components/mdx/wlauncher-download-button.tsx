@@ -6,7 +6,6 @@ export function WLauncherDownloadButton() {
 	const { data, isLoading, error } = useQuery({
 		queryKey: ["wlauncher-latest-version"],
 		queryFn: async () => {
-			// get the latest "exe" direct path (could be any.exe)
 			const response = await fetch("https://api.github.com/repos/WhitigolSoftware/wLauncher/releases/latest");
 			const data = await response.json();
 			const exePath = data.assets.find((asset: { name: string }) => asset.name.endsWith(".exe"))?.browser_download_url;
