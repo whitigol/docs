@@ -17,7 +17,7 @@ function Home() {
 				{/* Hero Section */}
 				<div className="flex flex-col items-center space-y-6 text-center">
 					<div className="flex items-center gap-3">
-						<img src="/logo.svg" alt="Whitigol Software" className="size-10 shrink-0 md:size-12" />
+						<img src="/logo.svg" alt="Whitigol Software" className="size-10 shrink-0 invert md:size-12 dark:invert-0" />
 						<h1 className="-translate-y-0.5 text-3xl leading-none font-bold tracking-tight md:-translate-y-1 md:text-5xl">Whitigol Software</h1>
 					</div>
 					<p className="text-muted-foreground max-w-2xl text-base md:text-lg">
