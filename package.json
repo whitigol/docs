@@ -8,7 +8,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"start": "node .output/server/index.mjs",
+		"start": "bun run .output/server/index.mjs",
 		"ui": "bunx shadcn@latest",
 		"postinstall": "fumadocs-mdx",
 		"typecheck": "tsc --noEmit",

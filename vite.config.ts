@@ -25,7 +25,7 @@ export default defineConfig({
 				host: "v2.docs.whitigol.me",
 			},
 		}),
-		nitro({ preset: "node" }),
+		nitro({ preset: "bun" }),
 		react(),
 	],
 });
