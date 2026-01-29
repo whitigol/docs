@@ -1,19 +1,20 @@
-# Use Bun as the base image
-FROM oven/bun:1.3.5-debian
+# Dependencies stage: install node_modules only
+FROM oven/bun:1.3.5-debian AS deps
 WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-# Build Stage
-FROM base as builder
+# Build stage: copy deps and source, then build
+FROM oven/bun:1.3.5-debian AS builder
+WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Build the application
 RUN bun run build
 
-# Production Stage
-FROM base as runner
+# Production stage: minimal image with only the built app
+FROM oven/bun:1.3.5-debian AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
