@@ -8,7 +8,11 @@ RUN bun install --frozen-lockfile
 FROM oven/bun:1.3.5-debian AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+# Explicitly copy root config files required by Vite/build (e.g. source.config.ts)
+COPY package.json source.config.ts vite.config.ts tsconfig.json components.json ./
+COPY content ./content
+COPY public ./public
+COPY src ./src
 
 # Build the application
 RUN bun run build
