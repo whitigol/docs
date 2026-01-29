@@ -1,20 +1,17 @@
-# Dependencies stage: install node_modules only
+# Dependencies stage: install node_modules only (skip postinstall; needs source.config.ts)
 FROM oven/bun:1.3.5-debian AS deps
 WORKDIR /app
 COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile
+RUN bun install --frozen-lockfile --ignore-scripts
 
 # Build stage: copy deps and source, then build
 FROM oven/bun:1.3.5-debian AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-# Explicitly copy root config files required by Vite/build (e.g. source.config.ts)
-COPY package.json source.config.ts vite.config.ts tsconfig.json components.json ./
-COPY content ./content
-COPY public ./public
-COPY src ./src
+COPY . .
 
-# Build the application
+# postinstall (fumadocs-mdx) requires source.config.ts; run it here before build
+RUN bun run postinstall
 RUN bun run build
 
 # Production stage: minimal image with only the built app
