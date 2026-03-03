@@ -10,6 +10,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Disable fumadocs lastModified plugin (git) to avoid "Premature close" in container
+ENV DOCKER_BUILD=1
+
 # postinstall (fumadocs-mdx) requires source.config.ts; run it here before build
 RUN bun run postinstall
 RUN bun run build
