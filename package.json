@@ -15,7 +15,10 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"deps": "bunx taze@latest -Ilw",
-		"deps:major": "bunx taze@latest major -Ilw"
+		"deps:major": "bunx taze@latest major -Ilw",
+		"docker:build": "docker build -t whitigol-docs .",
+		"docker:run": "docker run --rm -p 3000:3000 whitigol-docs",
+		"docker:test": "bun run docker:build && bun run docker:run"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",
