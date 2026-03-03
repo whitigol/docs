@@ -10,11 +10,6 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Disable lastModified plugin (git) in container to avoid "Premature close" from fumadocs-mdx
-ENV DOCKER_BUILD=1
-# Give the build more memory; fumadocs-mdx can be heavy with many MDX files
-ENV NODE_OPTIONS=--max-old-space-size=4096
-
 # postinstall (fumadocs-mdx) requires source.config.ts; run it here before build
 RUN bun run postinstall
 RUN bun run build
