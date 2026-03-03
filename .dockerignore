@@ -1,0 +1,30 @@
+# Dependencies: installed in container
+node_modules
+
+# Build outputs and caches (rebuilt in container)
+.output
+.nitro
+.source
+dist
+.cache
+.vercel
+.tanstack
+build
+server/build
+public/build
+
+# Dev and tooling
+test-results
+playwright-report
+blob-report
+playwright/.cache
+
+# Environment and OS
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+# Optional: uncomment to shrink context (lastModified plugin will have no git history)
+# .git

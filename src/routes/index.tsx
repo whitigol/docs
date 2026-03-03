@@ -12,10 +12,10 @@ export const Route = createFileRoute("/")({
 
 function Home() {
 	return (
-		<HomeLayout {...baseOptions()} className="flex min-h-screen items-center justify-center pt-20 pb-12 md:py-0">
-			<div className="container mx-auto w-full space-y-12 px-4 md:space-y-16">
+		<HomeLayout {...baseOptions()} className="flex min-h-screen flex-col">
+			<div className="mx-auto flex w-full max-w-[var(--fd-layout-width)] flex-1 flex-col items-center justify-center space-y-12 px-4 pt-8 pb-12 md:space-y-16 md:py-12">
 				{/* Hero Section */}
-				<div className="flex flex-col items-center space-y-6 text-center">
+				<div className="flex w-full flex-col items-center space-y-6 text-center">
 					<div className="flex items-center gap-3">
 						<img src="/logo.svg" alt="Whitigol Software" className="size-10 shrink-0 invert md:size-12 dark:invert-0" />
 						<h1 className="-translate-y-0.5 text-3xl leading-none font-bold tracking-tight md:-translate-y-1 md:text-5xl">Whitigol Software</h1>
@@ -37,7 +37,7 @@ function Home() {
 				</div>
 
 				{/* Documentation Sections */}
-				<div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+				<div className="grid w-full grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
 					<Link
 						to="/docs/$"
 						params={{
@@ -112,7 +112,7 @@ function Home() {
 				</div>
 
 				{/* Social Links */}
-				<div className="flex items-center justify-center gap-3 border-t pt-6">
+				<div className="flex w-full items-center justify-center gap-3 border-t pt-6">
 					<Button variant="outline" size="sm" asChild className="gap-2">
 						<a href="https://github.com/whitigol/docs" target="_blank" rel="noopener noreferrer">
 							<Github className="size-4" />

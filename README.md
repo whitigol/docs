@@ -50,6 +50,26 @@ Start the production server:
 bun start
 ```
 
+### Docker (local build test)
+
+Build and run the app in Docker to match production:
+
+```bash
+# Build the image
+bun run docker:build
+
+# Run the container (app at http://localhost:3000)
+bun run docker:run
+```
+
+Or build and run in one step:
+
+```bash
+bun run docker:test
+```
+
+Requires Docker. The image is tagged `whitigol-docs`.
+
 ## 📁 Project Structure
 
 ```

@@ -10,6 +10,10 @@ export default defineConfig({
 	server: {
 		port: 3000,
 	},
+	build: {
+		sourcemap: false,
+		minify: false,
+	},
 	plugins: [
 		mdx(await import("./source.config")),
 		tailwindcss(),
@@ -22,7 +26,7 @@ export default defineConfig({
 			},
 			sitemap: {
 				enabled: true,
-				host: "v2.docs.whitigol.me",
+				host: "docs.whitigol.me",
 			},
 		}),
 		nitro({ preset: "bun" }),
