@@ -3,13 +3,7 @@ import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { createServerFn } from "@tanstack/react-start";
 import { source } from "@/lib/source";
 import browserCollections from "fumadocs-mdx:collections/browser";
-import {
-	DocsBody,
-	DocsDescription,
-	DocsPage,
-	DocsTitle,
-	PageLastUpdate,
-} from "fumadocs-ui/layouts/docs/page";
+import { DocsBody, DocsDescription, DocsPage, DocsTitle, PageLastUpdate } from "fumadocs-ui/layouts/docs/page";
 import { baseOptions } from "@/lib/layout.shared";
 import { useFumadocsLoader } from "fumadocs-core/source/client";
 import React, { Suspense } from "react";
@@ -47,16 +41,8 @@ type PageProps = {
 };
 
 const clientLoader = browserCollections.docs.createClientLoader({
-	component(
-		{ toc, frontmatter, default: MDX },
-		props: PageProps | undefined,
-	) {
-		const lastModifiedDate =
-			props?.lastModified != null
-				? typeof props.lastModified === "string"
-					? new Date(props.lastModified)
-					: props.lastModified
-				: undefined;
+	component({ toc, frontmatter, default: MDX }, props: PageProps | undefined) {
+		const lastModifiedDate = props?.lastModified != null ? (typeof props.lastModified === "string" ? new Date(props.lastModified) : props.lastModified) : undefined;
 
 		return (
 			<DocsPage
