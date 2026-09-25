@@ -1,88 +1,41 @@
 ---
-title: Commands
-description: Complete reference of all available DevMate commands for server and client consoles.
+title: Commands and key bindings
+description: Open and close DevMate with its configured command and optional FiveM key bindings.
 icon: Terminal
 ---
 
-## Overview
+## Menu command
 
-DevMate provides several console commands for managing log levels and controlling various aspects of the tool. All commands can be executed from either the server console or the client console (F8).
+Use the command configured by `MenuCommand` to open DevMate. The default is:
 
----
-
-## Log Level Commands
-
-DevMate uses a hierarchical log level system to control what information is displayed in the console. Understanding these levels helps you filter out unnecessary information during development and production.
-
-### Valid Log Levels
-
-<Callout type="info" title="Log Level Hierarchy">
-	The log levels are hierarchical, meaning each level includes all levels below it:
-	
-	- **`INFO`** - Shows info, success, warn, and error logs (most verbose)
-	- **`SUCCESS`** - Shows success, warn, and error logs
-	- **`WARN`** - Shows warn and error logs
-	- **`ERROR`** - Shows error logs only (least verbose)
-	- **`NONE`** - Shows nothing (silent mode)
-</Callout>
-
-### Set Log Level
-
-Sets the current log level for DevMate output.
-
-```bash title="Server or Client Console"
-setloglevel <level>
+```text title="FiveM chat or F8 console"
+devmate
 ```
 
-**Parameters:**
-- `<level>` - One of: `INFO`, `SUCCESS`, `WARN`, `ERROR`, or `NONE`
+The player must have the `OpenMenu` permission. Running the command while the menu is already open has no effect.
 
-**Examples:**
+## FiveM key bindings
 
-```bash
-# Set to show only errors
-setloglevel ERROR
+DevMate registers two entries under FiveM's key binding settings:
 
-# Set to show all information
-setloglevel INFO
+- **DevMate: Open menu** opens the menu.
+- **DevMate: Open menu modifier** is an optional modifier for the open-menu binding.
 
-# Disable all logging
-setloglevel NONE
-```
+Both bindings are unassigned by default. If only **Open menu** is assigned, that key opens DevMate normally. If the optional modifier is also assigned, the player must hold the modifier while pressing the open-menu key.
 
-<Callout type="warning">
-	Setting the log level to `NONE` will completely silence DevMate output, which may make debugging difficult. Use with caution.
-</Callout>
+Configure these from FiveM's settings rather than `config.jsonc`.
 
-### Get Log Level
+## Closing the menu
 
-Retrieves the current log level setting.
+These shortcuts are fixed while the DevMate interface has focus:
 
-```bash title="Server or Client Console"
-getloglevel
-```
+| Shortcut | Behavior |
+| --- | --- |
+| `Escape` | Close the menu and leave currently enabled tools running. |
+| `Shift` + `Escape` | Disable all active client tools, then close the menu. |
 
-**Output:**
-The command will display the current log level in the console, for example:
-```
-Current log level: INFO
-```
+Because the browser interface owns keyboard focus while DevMate is open, these close shortcuts are handled by the interface and are not FiveM key bindings.
 
----
+## Desktop console commands
 
-## Usage Tips
-
-- **Development**: Use `INFO` or `SUCCESS` to see detailed information during development
-- **Production**: Use `WARN` or `ERROR` to reduce console spam in production environments
-- **Debugging**: Temporarily set to `INFO` when troubleshooting issues
-- **Performance**: Use `NONE` if you need to completely silence DevMate (not recommended for active use)
-
----
-
-## Additional Notes
-
-- Log level changes take effect immediately
-- The log level setting is not persistent across server restarts (resets to default)
-- Different log levels help filter information based on importance
-- Error logs are always critical and should be monitored
-
+DevMate Desktop's Client Logs tool can send commands to the local FiveM client console. This does not grant additional server permissions; FiveM and DevMate still enforce the connected player's normal access.

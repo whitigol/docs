@@ -1,62 +1,17 @@
 ---
 title: Exports
-description: API reference for integrating DevMate functionality into your own scripts.
+description: Current integration status for other FiveM resources.
 icon: Code
 ---
 
-## Overview
+## Public API status
 
-DevMate provides a comprehensive exports API that allows you to integrate DevMate functionality into your own FiveM scripts. This enables you to leverage DevMate's powerful features programmatically.
+DevMate 2.0 beta does not currently expose a supported public FiveM exports API.
+
+The events and messages used by the in-game interface and DevMate Desktop are internal implementation details. Do not call them from another resource; they may change between beta releases without compatibility guarantees.
 
 <Callout type="info">
-	This documentation covers the available exports. More detailed examples and use cases will be added as the API expands.
+	A documented export will appear here when it becomes part of DevMate's supported public API. Until then, use the in-game menu, the configured command, and DevMate Desktop.
 </Callout>
 
----
-
-## Available Exports
-
-DevMate exports various functions that can be called from other resources using the FiveM export system. All exports follow the standard FiveM export pattern:
-
-```lua
--- Lua example
-local result = exports.DevMate:ExportName(parameters)
-```
-
-```javascript
-// JavaScript example
-const result = exports.DevMate.ExportName(parameters);
-```
-
----
-
-## Export Reference
-
-### Coming Soon
-
-The exports API documentation is currently being expanded. Check back soon for:
-
-- Complete export function reference
-- Usage examples for each export
-- Integration guides
-- Best practices for using DevMate exports
-
-<Callout type="warning">
-	While the exports API is available, detailed documentation is still in progress. Use with caution and test thoroughly in a development environment.
-</Callout>
-
----
-
-## Getting Help
-
-If you need assistance with DevMate exports:
-
-1. Make sure to read the [DevMate documentation](/docs/fivem-scripts/devmate) carefully and follow the instructions properly.
-2. Check the [Whitigol Software Discord](https://discord.gg/NuPCpBa4Vy) and open a ticket
-
----
-
-## Contributing
-
-If you have examples or use cases for DevMate exports that you'd like to share, please reach out through the Discord server. Your contributions help improve the documentation for everyone!
-
+If you have an integration use case, share it in the [Whitigol Software Discord](https://discord.gg/NuPCpBa4Vy).

@@ -1,0 +1,50 @@
+---
+title: DevMate Desktop
+description: Install and use the optional Windows companion for DevMate 2.0.
+icon: Monitor
+---
+
+DevMate Desktop is an optional Windows companion for the DevMate FiveM resource. The in-game tools continue to work without it.
+
+## What Desktop adds
+
+- A full desktop window that mirrors the connected DevMate session and its permitted tools.
+- Live FiveM client-console output with filtering and copying.
+- Access to the current FiveM log file.
+- The ability to send commands to the local FiveM client console.
+- Automatic update checks for new Desktop versions.
+
+Desktop does not bypass DevMate permissions. Actions run through the connected game client and use that player's granted capabilities.
+
+## Install on Windows
+
+Open DevMate in game and use **Download DevMate Desktop** on the dashboard when the companion is not connected. This downloads the current installer directly.
+
+Run the installer as your Windows user. The default location is:
+
+```text
+%LOCALAPPDATA%\Programs\Whitigol Software\DevMate
+```
+
+The installer does not require administrator access. Choose the customized installation option if you want a different folder.
+
+<Callout type="info" title="Windows only">
+	DevMate Desktop currently supports 64-bit Windows. Linux and macOS builds are not provided.
+</Callout>
+
+## Connect to FiveM
+
+1. Start DevMate Desktop.
+2. Start FiveM and join a server running DevMate 2.0.
+3. Open the DevMate in-game menu.
+4. Confirm that the Desktop status changes to connected.
+
+The bridge is local to your computer. If the status remains disconnected, make sure only one Desktop instance is running, then restart Desktop and reopen the in-game menu.
+
+## Updates
+
+Packaged builds check for updates during startup. If that check fails, Desktop displays a notice and continues opening. While Desktop remains open, it checks again every 30 minutes.
+
+When an update becomes available during a session, an icon appears in the title bar. Hover it to see **Update Available**, then select it to download and install the update. Startup updates are downloaded before the main window opens and restart Desktop into the new version.
+
+The DevMate resource and DevMate Desktop have separate version numbers and release schedules. Updating one does not automatically update the other.
