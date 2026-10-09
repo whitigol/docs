@@ -1,6 +1,6 @@
 # Repository Guide
 
-This repository contains the standalone Whitigol Software documentation site for `docs.whitigol.me`. It is a TanStack Start application using Fumadocs MDX, React, TypeScript, Tailwind CSS, and npm.
+This repository contains the standalone Whitigol Software documentation site for `docs.whitigol.me`. It is a TanStack Start application using Fumadocs MDX, React, TypeScript, Tailwind CSS, and Bun.
 
 ## Project Structure
 
@@ -35,11 +35,11 @@ This repository contains the standalone Whitigol Software documentation site for
 
 ## Development
 
-Node.js 22 or newer is required. Use the checked-in npm lockfile.
+Bun 1.3.13 or newer and Node.js 22 or newer are required. Use the checked-in Bun lockfile.
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 The development server runs at `http://localhost:3000`.
@@ -49,8 +49,8 @@ The development server runs at `http://localhost:3000`.
 Run both checks after code or content changes:
 
 ```bash
-npm run types:check
-npm run build
+bun run types:check
+bun run build
 ```
 
 For navigation, layout, or interactive changes, also verify the affected pages in a browser. Confirm that `/docs` and `/changelog` render without duplicated layouts or broken client-side links.

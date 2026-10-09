@@ -4,11 +4,11 @@ Documentation and changelogs for Whitigol Software projects, built with TanStack
 
 ## Development
 
-Node.js 22 or newer is required.
+Bun 1.3.13 or newer and Node.js 22 or newer are required.
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 The local site is available at <http://localhost:3000>. Documentation lives under `/docs`; the standalone changelog lives at `/changelog`.
@@ -22,8 +22,8 @@ The local site is available at <http://localhost:3000>. Documentation lives unde
 ## Verification
 
 ```bash
-npm run types:check
-npm run build
+bun run types:check
+bun run build
 ```
 
 The app is configured for its own deployment at `docs.whitigol.me`.
