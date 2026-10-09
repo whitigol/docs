@@ -1,0 +1,87 @@
+---
+title: v1.2.0-rc
+description: Release candidate introducing Live Compiler encryption, Lua obfuscation, and build-pipeline improvements.
+date: 2025-12-19
+product: fivem-compiler
+version: v1.2.0-rc
+tags: [release-candidate]
+authors: [whitigol]
+---
+
+<Callout type="warning" title="Release Candidate">
+  This release is not intended for production use. Behavior, APIs, and internal logic may change before the stable release.
+</Callout>
+
+To bootstrap a new FiveM resource with the release candidate:
+
+```bash tab="npm"
+npm create fivem@rc
+```
+
+```bash tab="pnpm"
+pnpm create fivem@rc
+```
+
+```bash tab="yarn"
+yarn create fivem@rc
+```
+
+```bash tab="bun"
+bun create fivem@rc
+```
+
+To install the release candidate in an existing project:
+
+```bash tab="npm"
+npm install @whitigol/fivem-compiler@rc
+```
+
+```bash tab="pnpm"
+pnpm add @whitigol/fivem-compiler@rc
+```
+
+```bash tab="yarn"
+yarn add @whitigol/fivem-compiler@rc
+```
+
+```bash tab="bun"
+bun add @whitigol/fivem-compiler@rc
+```
+
+## Features
+
+- Added Live Compiler support.
+
+## Improvements
+
+- Integrated Live Compiler support into every builder for automatic encryption during builds.
+- Improved the build pipeline to manage encryption and runtime configuration automatically when Live Compiler is enabled.
+- Added optional Lua obfuscation as an alternative protection method for Lua resources.
+- Simplified development-mode build operations for faster, more reliable development builds.
+
+## Bug Fixes
+
+- Fixed builder file-path handling for encrypted files.
+- Improved build error handling and messaging.
+
+## Notes
+
+- Live Compiler supports Lua, JavaScript, and TypeScript resources.
+- Live Compiler provides encryption rather than simple obfuscation.
+- JavaScript and TypeScript resources can be protected, addressing the FiveM Escrow system’s Lua-only limitation.
+- Live Compiler works with every language supported by FiveM Compiler.
+- Live Compiler cannot be combined with FiveM Escrow. Scripts will fail if both are enabled.
+- When enabled, all compiled scripts are encrypted automatically.
+- When enabled, `fxmanifest.lua` is configured automatically to use the Live Compiler runtime.
+- Live Compiler may conflict with Cfx.re Terms of Service for published resources. Private-server use works as expected, but approval for public distribution is not guaranteed.
+
+Enable Live Compiler in the `__experimental` section of `wfm.config.ts` or `wfm.config.js`:
+
+```ts
+export default defineConfig({
+  __experimental: {
+    live_compiler: true,
+  },
+  // Rest of your config
+});
+```

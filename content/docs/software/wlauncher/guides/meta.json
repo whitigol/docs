@@ -1,5 +1,6 @@
 {
 	"title": "Guides",
 	"description": "Guides for wLauncher",
-	"icon": "FaClipboardList"
+	"icon": "ClipboardList",
+	"pages": ["creating-a-profile", "importing-a-profile"]
 }

@@ -1,4 +1,6 @@
 {
 	"title": "NPM Packages",
-	"description": "A collection of NPM packages that I've created."
+	"description": "A collection of NPM packages that I've created.",
+	"icon": "SiNpm",
+	"pages": ["create-fivem", "fivem-compiler"]
 }

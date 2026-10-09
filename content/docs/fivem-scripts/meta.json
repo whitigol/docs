@@ -1,5 +1,6 @@
 {
 	"title": "FiveM Scripts",
 	"description": "A collection of FiveM scripts that I've created.",
+	"icon": "SiFivem",
 	"pages": ["devmate"]
 }

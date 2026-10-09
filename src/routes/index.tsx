@@ -1,132 +1,94 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { HomeLayout } from "fumadocs-ui/layouts/home";
-import { baseOptions } from "@/lib/layout.shared";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Code, Package, Gamepad2, Github, ArrowRight } from "lucide-react";
-import { BsDiscord } from "react-icons/bs";
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowRight, Monitor, ScrollText } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { SiFivem, SiNpm } from 'react-icons/si';
+import { HomeLayout } from 'fumadocs-ui/layouts/home';
+import { baseOptions } from '@/lib/layout.shared';
 
-export const Route = createFileRoute("/")({
-	component: Home,
+export const Route = createFileRoute('/')({
+  component: Home,
 });
 
 function Home() {
-	return (
-		<HomeLayout {...baseOptions()} className="flex min-h-screen items-center justify-center pt-20 pb-12 md:py-0">
-			<div className="container mx-auto w-full space-y-12 px-4 md:space-y-16">
-				{/* Hero Section */}
-				<div className="flex flex-col items-center space-y-6 text-center">
-					<div className="flex items-center gap-3">
-						<img src="/logo.svg" alt="Whitigol Software" className="size-10 shrink-0 invert md:size-12 dark:invert-0" />
-						<h1 className="-translate-y-0.5 text-3xl leading-none font-bold tracking-tight md:-translate-y-1 md:text-5xl">Whitigol Software</h1>
-					</div>
-					<p className="text-muted-foreground max-w-2xl text-base md:text-lg">
-						Comprehensive documentation for all of my software projects, NPM packages, and FiveM scripts
-					</p>
-					<Button asChild size="lg" className="gap-2">
-						<Link
-							to="/docs/$"
-							params={{
-								_splat: "",
-							}}
-						>
-							Get Started
-							<ArrowRight className="size-4" />
-						</Link>
-					</Button>
-				</div>
+  return (
+    <HomeLayout {...baseOptions()}>
+      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center gap-14 px-6 py-20 md:py-28">
+        <section className="max-w-3xl">
+          <div className="mb-6 flex items-center gap-3">
+            <img src="/logo.svg" alt="Whitigol Software" className="size-12 invert dark:invert-0" />
+            <span className="text-sm font-medium tracking-wide text-fd-muted-foreground">WHITIGOL SOFTWARE</span>
+          </div>
+          <h1 className="text-4xl font-semibold tracking-tight text-balance md:text-6xl">
+            Build, configure, and ship with confidence.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-fd-muted-foreground">
+            Guides and references for Whitigol Software, npm packages, and FiveM resources.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              to="/docs/$"
+              params={{ _splat: '' }}
+              className="inline-flex items-center gap-2 rounded-lg bg-fd-primary px-4 py-2.5 text-sm font-medium text-fd-primary-foreground"
+            >
+              Browse documentation <ArrowRight className="size-4" />
+            </Link>
+            <Link
+              to="/changelog"
+              className="inline-flex items-center gap-2 rounded-lg border bg-fd-card px-4 py-2.5 text-sm font-medium"
+            >
+              <ScrollText className="size-4" /> Changelog
+            </Link>
+          </div>
+        </section>
 
-				{/* Documentation Sections */}
-				<div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-					<Link
-						to="/docs/$"
-						params={{
-							_splat: "software",
-						}}
-						className="block"
-					>
-						<Card className="group h-full transition-all hover:shadow-lg">
-							<CardHeader className="text-center">
-								<div className="bg-primary/10 text-primary mx-auto mb-4 flex size-12 items-center justify-center rounded-lg">
-									<Code className="size-6" />
-								</div>
-								<CardTitle>Software</CardTitle>
-								<CardDescription>Documentation for all software projects</CardDescription>
-							</CardHeader>
-							<CardContent className="flex justify-center">
-								<div className="text-primary flex items-center gap-2 text-sm font-medium transition-all group-hover:gap-3">
-									Explore
-									<ArrowRight className="size-4" />
-								</div>
-							</CardContent>
-						</Card>
-					</Link>
+        <section aria-label="Documentation sections" className="grid gap-4 md:grid-cols-3">
+          <SectionCard
+            title="Software"
+            description="Setup and usage guides for desktop software."
+            slug="software"
+            icon={<Monitor className="size-5" />}
+          />
+          <SectionCard
+            title="npm packages"
+            description="References for project tooling and packages."
+            slug="npm-packages"
+            icon={<SiNpm className="size-5" />}
+          />
+          <SectionCard
+            title="FiveM scripts"
+            description="Installation, configuration, and API references."
+            slug="fivem-scripts"
+            icon={<SiFivem className="size-5" />}
+          />
+        </section>
+      </main>
+    </HomeLayout>
+  );
+}
 
-					<Link
-						to="/docs/$"
-						params={{
-							_splat: "npm-packages",
-						}}
-						className="block"
-					>
-						<Card className="group h-full transition-all hover:shadow-lg">
-							<CardHeader className="text-center">
-								<div className="bg-primary/10 text-primary mx-auto mb-4 flex size-12 items-center justify-center rounded-lg">
-									<Package className="size-6" />
-								</div>
-								<CardTitle>NPM Packages</CardTitle>
-								<CardDescription>Documentation for published NPM packages</CardDescription>
-							</CardHeader>
-							<CardContent className="flex justify-center">
-								<div className="text-primary flex items-center gap-2 text-sm font-medium transition-all group-hover:gap-3">
-									Explore
-									<ArrowRight className="size-4" />
-								</div>
-							</CardContent>
-						</Card>
-					</Link>
-
-					<Link
-						to="/docs/$"
-						params={{
-							_splat: "fivem-scripts",
-						}}
-						className="block"
-					>
-						<Card className="group h-full transition-all hover:shadow-lg">
-							<CardHeader className="text-center">
-								<div className="bg-primary/10 text-primary mx-auto mb-4 flex size-12 items-center justify-center rounded-lg">
-									<Gamepad2 className="size-6" />
-								</div>
-								<CardTitle>FiveM Scripts</CardTitle>
-								<CardDescription>Documentation for FiveM server scripts and resources</CardDescription>
-							</CardHeader>
-							<CardContent className="flex justify-center">
-								<div className="text-primary flex items-center gap-2 text-sm font-medium transition-all group-hover:gap-3">
-									Explore
-									<ArrowRight className="size-4" />
-								</div>
-							</CardContent>
-						</Card>
-					</Link>
-				</div>
-
-				{/* Social Links */}
-				<div className="flex items-center justify-center gap-3 border-t pt-6">
-					<Button variant="outline" size="sm" asChild className="gap-2">
-						<a href="https://github.com/whitigol/docs" target="_blank" rel="noopener noreferrer">
-							<Github className="size-4" />
-							GitHub
-						</a>
-					</Button>
-					<Button variant="outline" size="sm" asChild className="gap-2">
-						<a href="https://discord.gg/NuPCpBa4Vy" target="_blank" rel="noopener noreferrer">
-							<BsDiscord className="size-4" />
-							Discord
-						</a>
-					</Button>
-				</div>
-			</div>
-		</HomeLayout>
-	);
+function SectionCard({
+  title,
+  description,
+  slug,
+  icon,
+}: {
+  title: string;
+  description: string;
+  slug: string;
+  icon: ReactNode;
+}) {
+  return (
+    <Link
+      to="/docs/$"
+      params={{ _splat: slug }}
+      className="group rounded-xl border bg-fd-card p-6 transition-colors hover:bg-fd-accent"
+    >
+      <div className="mb-5 flex size-10 items-center justify-center rounded-lg bg-fd-primary/10 text-fd-primary">
+        {icon}
+      </div>
+      <h2 className="font-medium">{title}</h2>
+      <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">{description}</p>
+      <ArrowRight className="mt-5 size-4 transition-transform group-hover:translate-x-1" />
+    </Link>
+  );
 }

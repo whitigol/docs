@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <title>DevMate D Logo</title>
+  <desc>Bright ribbon-style D with a developer code symbol.</desc>
+  <defs>
+    <clipPath id="d-clip">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M190 850V174H438C682 174 846 310 846 512C846 714 682 850 438 850H190ZM370 344V680H438C574 680 666 616 666 512C666 408 574 344 438 344H370Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- White exterior keyline -->
+  <path d="M190 850V174H438C682 174 846 310 846 512C846 714 682 850 438 850H190Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="52" stroke-linejoin="round"/>
+
+  <!-- Two-piece D ribbon -->
+  <g clip-path="url(#d-clip)">
+    <rect x="150" y="140" width="760" height="760" fill="#18D6B1"/>
+    <path d="M438 140H910V900H438L594 512L438 140Z" fill="#FF704D"/>
+  </g>
+
+  <!-- The D counter becomes the developer panel -->
+  <path d="M370 344H438C574 344 666 408 666 512C666 616 574 680 438 680H370Z" fill="#3847B8"/>
+  <g stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M474 463L428 512L474 561"/>
+    <path d="M562 463L608 512L562 561"/>
+    <path d="M544 444L492 580"/>
+  </g>
+</svg>

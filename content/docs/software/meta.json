@@ -1,4 +1,6 @@
 {
 	"title": "Software",
-	"description": "Documentation for all of my software."
+	"description": "Documentation for all of my software.",
+	"icon": "Monitor",
+	"pages": ["wlauncher"]
 }

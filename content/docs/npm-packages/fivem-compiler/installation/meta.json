@@ -1,4 +1,5 @@
 {
 	"title": "Manual Installation",
+	"icon": "Download",
 	"pages": ["typescript", "javascript", "lua"]
 }

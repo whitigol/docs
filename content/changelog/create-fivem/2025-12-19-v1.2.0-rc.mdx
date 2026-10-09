@@ -1,0 +1,43 @@
+---
+title: v1.2.0-rc
+description: Release candidate with Live Compiler setup, dependency-install controls, and complete command-line flag support.
+date: 2025-12-19
+product: create-fivem
+version: v1.2.0-rc
+tags: [release-candidate]
+authors: [whitigol]
+---
+
+<Callout type="warning" title="Release Candidate">
+  This release is not intended for production use. Behavior and configuration may change before the stable release.
+</Callout>
+
+To bootstrap a project with the release candidate:
+
+```bash tab="npm"
+npm create fivem@rc
+```
+
+```bash tab="pnpm"
+pnpm create fivem@rc
+```
+
+```bash tab="yarn"
+yarn create fivem@rc
+```
+
+```bash tab="bun"
+bun create fivem@rc
+```
+
+## Improvements
+
+- Added a Live Compiler option during resource creation. When enabled, it automatically configures `__experimental.live_compiler` in `wfm.config` files to enable resource encryption. This is not officially supported by Cfx.re.
+- Added the ability to skip automatic dependency installation, allowing projects to be bootstrapped without installing dependencies.
+- Implemented complete command-line flag support for every configuration option. Interactive prompts can now be skipped with `--dir`, `--git`, `--lang`, `--pkg`, `--name`, `--author`, `--desc`, `--version`, `--nui`, `--nui-fw`, `--nui-lang`, `--live`, and `--install`.
+- Made all flags and flag values case-insensitive.
+- Updated the README with comprehensive flag documentation.
+
+## Notes
+
+- Flag values accept `yes`/`no` and `true`/`false` interchangeably, regardless of case.
