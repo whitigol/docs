@@ -1,0 +1,81 @@
+---
+title: Tools
+description: Learn how to use every DevMate v2 development and server-management tool.
+icon: Wrench
+---
+
+DevMate shows every module in the sidebar. A lock indicates that your server has not granted the matching permission. Actions are validated again by the server, including actions sent from DevMate Desktop.
+
+## Entity Viewer
+
+Use Entity Viewer to understand what is around your player:
+
+- **Free aim** targets an entity so you can inspect, freeze, or delete it.
+- **Objects**, **Vehicles**, and **Pedestrians** draw nearby bounds and details for that entity type.
+
+Turn off modes when you are finished. **Shift+Escape** closes DevMate and disables all active client tools at once.
+
+## Resource Manager
+
+Search all server resources, view their current state, and start, stop, or restart them. DevMate asks for confirmation before a stop or restart.
+
+Stops and restarts use the delays in `SafeRestart`. DevMate first tells connected clients to clean up the target resource's entities, waits for `warnTime` plus `lagTime`, and then runs the server command.
+
+## Resource Explorer
+
+Browse folders and edit text files without leaving DevMate. Select a resource, open a file, make your changes, and save it. The resource controls at the bottom let authorized users start, stop, or restart the selected resource.
+
+Resource Explorer:
+
+- stays inside the selected resource directory;
+- opens regular text files up to 2 MiB;
+- rejects binary files and unsafe paths;
+- requires generated filesystem permissions for each resource.
+
+<Callout type="error" title="Powerful file access">
+  Resource Explorer can expose configuration, source code, and secrets stored in resource files. Grant `ResourceExplorer` only to trusted developers.
+</Callout>
+
+If a resource is marked **pending**, restart the entire server before trying to open it. See [Resource Explorer access](/docs/fivem-scripts/devmate/config#resource-explorer-access).
+
+## Code Executor
+
+Run Lua or JavaScript in either the current client or the server runtime. The result panel reports completion or returns the runtime error.
+
+1. Choose **Lua** or **JavaScript**.
+2. Choose **Client** or **Server**.
+3. Enter the code and select **Execute**.
+
+<Callout type="error" title="Arbitrary code execution">
+  Code Executor has the same reach as code installed in a resource. Server code can read data, call exports, run commands, and disrupt the server. Grant `CodeExecuter` only to fully trusted developers.
+</Callout>
+
+## Event Watcher
+
+Enter an event name, choose the client or server runtime, and select **Watch**. Matching payloads appear in the captured-event list with their time and runtime. Select an active subscription to remove it, or clear the captured list when you are finished.
+
+DevMate retains the latest 200 captured events. Internal `devmate:` events cannot be watched.
+
+<Callout type="warning">
+  Event payloads may contain identifiers or other sensitive data. Do not share captures without reviewing them first.
+</Callout>
+
+## Client Logs
+
+Client Logs is available through [DevMate Desktop](/docs/fivem-scripts/devmate/desktop). It displays live FiveM client output, supports search and level filters, and can send client console commands.
+
+## OneSync Blip
+
+Enable the radius blip to visualize the approximate OneSync range around your player. The blip follows you until it is disabled.
+
+## Game Modifier
+
+Set pedestrian and traffic density from 0% to 100%, then select **Apply density**. These controls are useful for performance checks and repeatable test scenes.
+
+## Coords Tool
+
+View live X, Y, Z, heading, and distance values. Copy the current position as JSON, JavaScript, C#, or Lua. You can use the detected ground Z value when copying and set a distance origin to measure from a chosen point.
+
+## Bone Viewer
+
+Search the built-in vehicle and pedestrian bone lists and select bones to display in game. The selected count helps you keep track of active markers.

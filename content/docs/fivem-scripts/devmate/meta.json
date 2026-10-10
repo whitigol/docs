@@ -1,6 +1,6 @@
 {
-	"title": "DevMate",
-	"description": "A versatile FiveM development tool designed to simplify resource creation, streamline server management, and provide user-friendly tools for efficient debugging.",
-	"icon": "DevMateLogo",
-	"pages": ["installation", "commands", "config", "exports"]
+  "title": "DevMate",
+  "description": "Install, configure, and use the DevMate v2 development toolkit for FiveM.",
+  "icon": "DevMateLogo",
+  "pages": ["installation", "config", "tools", "desktop", "troubleshooting"]
 }

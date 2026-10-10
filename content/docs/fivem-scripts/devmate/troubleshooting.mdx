@@ -1,0 +1,69 @@
+---
+title: Troubleshooting
+description: Fix common DevMate v2 installation, permission, Resource Explorer, and Desktop issues.
+icon: MessageCircle
+---
+
+## The menu does not open
+
+1. Check the server console for a successful DevMate license message.
+2. Confirm the resource folder is named exactly `DevMate`.
+3. Confirm `ensure DevMate` is present in `server.cfg`.
+4. Confirm your player has `devmate.OpenMenu` through a configured group.
+5. Try the command from `MenuCommand`; the default is `/devmate`.
+
+If you use a key binding, check **FiveM Settings → Key Bindings → FiveM**. The DevMate menu and modifier bindings are unassigned by default. When the modifier is assigned, it must be held while using the menu binding.
+
+## DevMate cannot run server commands
+
+Place the bundled permission file before the resource starts:
+
+```ini title="server.cfg"
+exec @DevMate/permissions.cfg
+ensure DevMate
+```
+
+Then fully restart the server. The older `add_ace resource.DevMate command allow` line grants command access but does not load Resource Explorer's generated filesystem rules, so use the bundled file instead.
+
+## A tool is locked
+
+Locked tools are visible so you can identify the missing access. Check that:
+
+- `Permissions.enabled` is `true`;
+- the permission is listed under the intended group in `config.jsonc`;
+- the player is assigned to that exact FiveM group;
+- DevMate was restarted after configuration changes;
+- the player reconnected after principal changes.
+
+See the [permission reference](/docs/fivem-scripts/devmate/config#permissions) for exact names.
+
+## Resource Explorer shows pending resources
+
+DevMate discovered resources that do not yet have active filesystem permissions. Fully restart the server so `permissions/resources.cfg` is executed during startup. Restarting only DevMate is not enough.
+
+Do not edit `permissions/resources.cfg`; DevMate generates and maintains it.
+
+## Resource Explorer cannot save
+
+Confirm the server process can write to the resource directory. Resource Explorer only overwrites existing regular text files, rejects binary files, and limits files to 2 MiB.
+
+## An automatic update was installed
+
+Restart DevMate or the server to load the new resource build. DevMate preserves protected configuration and permission files while applying verified updates.
+
+If an update fails, the installed version continues running. Use the full error in the server console when contacting support.
+
+## Desktop says “Waiting for game”
+
+- Start FiveM and connect to a server running DevMate v2.
+- Make sure DevMate Desktop and FiveM are running on the same Windows computer.
+- Restart DevMate Desktop, then reconnect FiveM if needed.
+- Check whether security software is blocking local connections on `127.0.0.1:60500`.
+
+No pairing code is required for the stable v2 connection.
+
+## License errors
+
+Confirm that `LicenseKey` contains the complete key from your [Big Daddy Scripts account](https://bigdaddyscripts.com/Account), that the server can reach external HTTPS services, and that the resource folder is named `DevMate`.
+
+Keep the full server-console error, but remove license keys and other secrets before sharing logs. For further help, join the [Whitigol Software Discord](https://discord.gg/NuPCpBa4Vy) or open a [Big Daddy Scripts support ticket](https://bigdaddyscripts.com/support/tickets).

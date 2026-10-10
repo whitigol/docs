@@ -1,0 +1,44 @@
+---
+title: DevMate Desktop
+description: Install the Windows companion, connect it to FiveM, and use DevMate tools outside the game.
+icon: Monitor
+---
+
+DevMate Desktop is an optional Windows companion for DevMate v2. It mirrors the tools your player is authorized to use and adds a full client-log workspace.
+
+## Install
+
+1. Open DevMate in FiveM.
+2. On the Dashboard, select **Download DevMate Desktop**.
+3. Run the downloaded installer and choose an installation folder if needed.
+4. Start DevMate Desktop.
+
+DevMate Desktop is currently available for Windows only. The installer is unsigned, so Windows may ask you to confirm that you trust the application before continuing.
+
+## Connect to FiveM
+
+There is no pairing code or account sign-in. Start FiveM and DevMate Desktop on the same computer. The app connects automatically through a local-only bridge and changes from **Waiting for game** to **Connected to game**.
+
+The Desktop sidebar mirrors the permissions granted to your current FiveM player. Locked modules remain visible, but the server rejects any action you are not authorized to perform.
+
+<Callout type="info">
+  DevMate Desktop does not replace the FiveM resource. The server must be running DevMate v2, and your FiveM client must be connected for game tools to work.
+</Callout>
+
+## Client Logs
+
+The Client Logs page reads live FiveM client output and lets you:
+
+- search console messages;
+- filter info, success, warning, and error entries;
+- copy output or open the current log file and logs folder;
+- clear the current view;
+- send commands to the FiveM client console.
+
+Client Logs reconnects automatically when FiveM restarts.
+
+## Updates
+
+Packaged Desktop builds check for updates during startup. If an update is already available, DevMate downloads it and restarts before showing the main window. Updates found while the app is open appear as an action in the title bar.
+
+The DevMate resource and DevMate Desktop have separate version numbers. This is expected: DevMate v2.0.0 works with the stable DevMate Desktop v1 release line.
