@@ -16,10 +16,15 @@ If you use a key binding, check **FiveM Settings → Key Bindings → FiveM**. T
 
 ## DevMate cannot run server commands
 
-Place the bundled permission file before the resource starts:
+Place the bundled permission file at the very top of `server.cfg`, before all other lines:
 
 ```ini title="server.cfg"
 exec @DevMate/permissions.cfg
+```
+
+Make sure DevMate is also present in the resource startup section:
+
+```ini title="server.cfg"
 ensure DevMate
 ```
 
