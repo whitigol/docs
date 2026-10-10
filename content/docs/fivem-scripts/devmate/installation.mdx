@@ -44,10 +44,15 @@ Keep the license key private. Do not paste it into support messages, screenshots
 
 ## 3. Update server.cfg
 
-Add these lines in this order:
+Add the permissions file at the very top of `server.cfg`, before all other lines:
 
 ```ini title="server.cfg"
 exec @DevMate/permissions.cfg
+```
+
+Then add DevMate to the resource startup section:
+
+```ini title="server.cfg"
 ensure DevMate
 ```
 
@@ -77,12 +82,14 @@ If the menu does not open, work through [Troubleshooting](/docs/fivem-scripts/de
 
 ## Updating from v1
 
-DevMate v2 can migrate supported older configuration files to `ConfigVersion: 2`. Before upgrading:
+We recommend a full wipe of the existing DevMate installation when updating from v1. Do not copy v2 over the existing resource or reuse the v1 configuration files.
 
-1. Back up your existing DevMate folder.
-2. Install the v2 `DevMate` folder without renaming it.
-3. Add `exec @DevMate/permissions.cfg` before `ensure DevMate` in `server.cfg`.
-4. Start the server and review the migration and licensing messages in the server console.
-5. Review your permission groups before allowing anyone to use the menu.
+1. Stop the server.
+2. Remove the existing `DevMate` folder from your server's resources directory.
+3. Extract a clean copy of the v2 `DevMate` folder into the resources directory without renaming it.
+4. Configure v2 using the new `config.jsonc` file included with the resource.
+5. Add `exec @DevMate/permissions.cfg` at the very top of `server.cfg`, before all other lines.
+6. Confirm that `ensure DevMate` is present in the resource startup section.
+7. Start the server, review the licensing messages in the server console, and verify your permission groups before allowing anyone to use the menu.
 
 With `AutomaticUpdates` enabled, future resource updates are downloaded and verified automatically. Restart DevMate or the server when the console says an update was installed.
