@@ -1,10 +1,10 @@
 ---
 title: v2.0.1 - Reliable Resource Startup
-description: DevMate v2.0.1 fixes a configuration parser bundling issue that could prevent the resource from starting.
+description: DevMate v2.0.1 fixes resource startup and updates bundled dependencies to patched releases.
 date: 2026-10-23
 product: devmate
 version: v2.0.1
-tags: [release, fix]
+tags: [release, fix, security]
 authors: [whitigol]
 ---
 
@@ -13,5 +13,9 @@ authors: [whitigol]
 DevMate v2.0.1 fixes an issue where the FiveM server runtime could fail to start the resource with a `Cannot find module './impl/format'` error.
 
 The configuration parser is now bundled directly into the resource instead of attempting to load internal package files at runtime. Configuration parsing and migration behavior remain unchanged.
+
+## Security updates
+
+The release rebuilds DevMate with patched user-interface and supporting dependencies, including a fix for newly disclosed DOM sanitization vulnerabilities. DevMate Desktop v1.0.1 also updates its Electron runtime and supporting dependencies to patched releases.
 
 No configuration changes are required. Replace the existing DevMate resource with v2.0.1 and restart it normally.
